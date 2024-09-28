@@ -1,0 +1,13 @@
+variables:
+  REGISTRY: ""
+  DOCKERFILE: ""
+  IGNORE: ""
+
+stages:
+  - lint
+
+.lint_docker:
+  image: hadolint/hadolint:latest-debian
+  stage: lint
+  script:
+    - hadolint $IGNORE --trusted-registry $REGISTRY $DOCKERFILE 
