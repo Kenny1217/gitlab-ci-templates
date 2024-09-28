@@ -1,0 +1,19 @@
+default:
+  image: docker:27
+  services:
+    - docker:27-dind
+
+variables:
+  DOCKERFILE: ""
+  IMAGE_NAME: ""
+  IMAGE_TAG: ""
+  REGISTRY: ""
+
+stages:
+  - build
+
+.build_docker:
+  stage: build
+  script:
+    - docker build -t $IMAGE_NAME:$IMAGE_TAG -f $DOCKERFILE .
+
